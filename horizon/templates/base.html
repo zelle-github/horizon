@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>Horizon</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -61,9 +61,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>H</b>ZN</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>Horizon</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -99,7 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                           </h4>
                           <!-- The message -->
-                          <p>Why not buy a new awesome theme?</p>
+                          <p>Welcome to Horizon</p>
                         </a>
                       </li><!-- end message -->
                     </ul><!-- /.menu -->
@@ -172,15 +172,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <!-- The user image in the navbar-->
                   <img src="{% static "dist/img/user2-160x160.jpg" %}" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">Admin</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
+                    <img src="#" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      Admin
+                      <small>Member since Jan. 2016</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>Admin</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -245,17 +245,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">Link in level 2</a></li>
-                <li><a href="#">Link in level 2</a></li>
-              </ul>
-            </li>
+            <li class="active"><a href="{% url 'databrowser:index' %}"><i class="fa fa-link"></i> <span>Data-Browser</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>Data-Upload Portal</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>Radiomics Dashboard</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>PACS System Retrieval</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>User Settings</span></a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -265,14 +261,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Page Header
-            <small>Optional description</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
+{% block content1header %}
+{% endblock %}          
         </section>
 
         <!-- Main content -->
@@ -288,7 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Anything you want
+          Dana Farber Cancer Institute
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
@@ -372,4 +362,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+{% block scripts %}
+{% endblock %}  
 </html>

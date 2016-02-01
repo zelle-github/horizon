@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+{% load static from staticfiles %}
+
+{% block content1 %}
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{% url 'home:index' %}"><b>Hori</b>zon</a>
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+    <p>You have been logged out.  You may <a href="{% url 'login' %}">log back in</a>.</p>
+  </div><!-- /.login-box-body -->
+</div><!-- /.login-box --> 
+{% endblock %}
+
