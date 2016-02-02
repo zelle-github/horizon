@@ -13,7 +13,10 @@ import json
 import collections
 import os
 import glob
+import numpy
 import SimpleITK as sitk
+import base64
+import pdb
 
 from .models import *
 
@@ -48,3 +51,43 @@ def index(request):
                                                       
     context = {'datasets': datasets}
     return render(request, 'databrowser/index.html', context)
+
+    
+def generate_images(request):
+    if request.method == 'POST':
+        image_pk = str(request.POST.get('image_id'))
+        print image_pk
+        image = Image.objects.get(pk=image_pk)
+        image_path = str(image.image_filepath)
+        
+        #pdb.set_trace()
+        
+        image_sitk = sitk.ReadImage(image_path)
+        imagearray_sitk = sitk.GetArrayFromImage(image_sitk)
+        
+        arrays_base64 = collections.OrderedDict()
+        for index, slice in enumerate(imagearray_sitk):
+          ind = str(index)
+          arrays_base64[ind] = {}
+          arr = base64.b64encode(slice)
+          arrays_base64[ind]['array'] = arr
+          arrays_base64[ind]['min'] = numpy.asscalar(imagearray_sitk.min())
+          arrays_base64[ind]['max'] = numpy.asscalar(imagearray_sitk.max())
+          arrays_base64[ind]['column_spacing'] = image_sitk.GetSpacing()[0]
+          arrays_base64[ind]['row_spacing'] = image_sitk.GetSpacing()[1]
+          arrays_base64[ind]['width'] = image_sitk.GetSize()[0]
+          arrays_base64[ind]['height'] = image_sitk.GetSize()[1]
+          
+        slices = len(arrays_base64.keys())
+        
+        return HttpResponse(
+          json.dumps({"slices": str(slices-1),
+                      "arrays": arrays_base64}),
+          content_type="application/json"
+      )
+    
+    else:
+      return HttpResponse(
+          json.dumps({"FAILED": "this isn't happening"}),
+          content_type="application/json"
+      )    
