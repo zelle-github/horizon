@@ -1,7 +1,6 @@
 # encoding=utf8
 import os, sys, glob
 import fnmatch
-import pdb
 
 import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "horizon.settings")
