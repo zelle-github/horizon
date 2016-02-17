@@ -52,7 +52,7 @@ def loadDataset(dataset_rootpath, start_date=None, description=None):
     
 def loadPatients(dataset):
     dataset_path = str(dataset.dataset_rootpath)
-    patient_subdirs = [subdir for subdir in glob.glob(dataset_path + '\\*') if os.path.isdir(subdir)]
+    patient_subdirs = [subdir for subdir in glob.glob(os.path.join(dataset_path,'*')) if os.path.isdir(subdir)]
     
     try:
         dataset_patients = [patient.patient_dicomid for patient in Patient.objects.filter(fk_patient_dataset=dataset)]
@@ -69,7 +69,7 @@ def loadPatients(dataset):
 
 def loadStudies(patient):
     patient_path = str(patient.patient_rootpath)
-    study_subdirs = [subdir for subdir in glob.glob(patient_path + '\\*') if os.path.isdir(subdir)]
+    study_subdirs = [subdir for subdir in glob.glob(os.path.join(patient_path,'*')) if os.path.isdir(subdir)]
     
     try:
         patient_studies = [study.study_name for study in Study.objects.filter(fk_study_patient=patient)]
@@ -86,7 +86,7 @@ def loadStudies(patient):
 
 def loadImages(study):
     study_path = str(study.study_rootpath)
-    study_subdirs = [subdir for subdir in glob.glob(study_path + '\\*') if os.path.isdir(subdir)]
+    study_subdirs = [subdir for subdir in glob.glob(os.path.join(study_path,'*')) if os.path.isdir(subdir)]
     
     reconstructions_dir = [subdir for subdir in study_subdirs if 'reconstructions' in os.path.basename(subdir).lower()][0]
     
@@ -119,7 +119,7 @@ def loadImages(study):
             
 def loadSegmentations(study, study_images):
     study_path = str(study.study_rootpath)
-    study_subdirs = [subdir for subdir in glob.glob(study_path + '\\*') if os.path.isdir(subdir)]
+    study_subdirs = [subdir for subdir in glob.glob(os.path.join(study_path,'*')) if os.path.isdir(subdir)]
     
     segmentations_dir = [subdir for subdir in study_subdirs if 'segmentations' in os.path.basename(subdir).lower()][0]
     
