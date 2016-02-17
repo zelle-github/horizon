@@ -59,28 +59,35 @@ WSGI_APPLICATION = 'horizon.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-       'default': {
-             'ENGINE':'django.db.backends.postgresql_psycopg2',
-             'NAME': os.environ['RDS_DB_NAME'],
-             'USER': os.environ['RDS_USERNAME'],
-             'PASSWORD': os.environ['RDS_PASSWORD'],
-             'HOST': os.environ['RDS_HOSTNAME'],
-             'PORT': os.environ['RDS_PORT'],
-             }
-          }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'horizon',
-            'USER': 'postgres',
-            'PASSWORD': 'dfcicibl',
-            'HOST' : 'localhost',
-            'PORT' : '5433',
-        }
-    } 
+#if 'RDS_DB_NAME' in os.environ:
+#    DATABASES = {
+#       'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'horizonDB',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postpw',
+#             'HOST' : 'localhost',
+#             'PORT' : '5432',
+#             }
+#          }
+#else:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#            'NAME': 'horizonDB',
+#            'USER': 'postgres',
+#            'PASSWORD': 'postpw',
+#            'HOST' : '127.0.0.1',
+#            'PORT' : '5432',
+#        }
+#    }
+    
+DATABASES = { 
+  'default': { 
+    'ENGINE': 'django.db.backends.sqlite3', 
+    'NAME': os.path.join(BASE_DIR, 'horizon_database.db'), 
+  } 
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
